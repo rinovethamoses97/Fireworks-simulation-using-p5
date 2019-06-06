@@ -25,9 +25,15 @@ class Particle{
 			point(this.pos.x,this.pos.y);
 		}
 		for(var i in this.subParticles){
-			stroke(this.color.r,this.color.g,this.color.b,this.subParticles[i].life);
-			strokeWeight(4);
-			point(this.subParticles[i].pos.x,this.subParticles[i].pos.y);
+			if(this.subParticles[i].life<=0){
+				this.subParticles.splice(i,1);
+				i--;
+			}
+			else{
+				stroke(this.color.r,this.color.g,this.color.b,this.subParticles[i].life);
+				strokeWeight(4);
+				point(this.subParticles[i].pos.x,this.subParticles[i].pos.y);	
+			}
 		}
 	}
 	update(){
