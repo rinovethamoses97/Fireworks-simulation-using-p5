@@ -34,12 +34,11 @@ class Particle{
 		if(!this.exploded){
 			this.velocity.y+=this.gravity;
 			this.pos.add(this.velocity);
-		}
-		if(this.velocity.y>=0 && !this.exploded){
-			console.log("Exploded");
-			this.exploded=true;
-			for(var i=0;i<100;i++){
-				this.subParticles.push(new Particle(this.pos.x,this.pos.y,true))
+			if(this.velocity.y>=0){
+				this.exploded=true;
+				for(var i=0;i<100;i++){
+					this.subParticles.push(new Particle(this.pos.x,this.pos.y,true))
+				}
 			}
 		}
 		for(var i in this.subParticles){
